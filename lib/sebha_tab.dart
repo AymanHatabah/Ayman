@@ -2,12 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami/MyThemeData.dart';
 
-class SebhaTab extends StatelessWidget {
-List<String>txt=["الحمد لله","استغفر الله","لا اله الا الله"];
+class SebhaTab extends StatefulWidget {
+  @override
+  State<SebhaTab> createState() => _SebhaTabState();
+}
 
+class _SebhaTabState extends State<SebhaTab> {
+  int counter = 1;
+
+  double angel = 1;
+
+  String txt = 'سبحان الله';
+
+  int oneHundred = 0;
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Center(
       child: Column(
         children: [
@@ -36,7 +49,8 @@ List<String>txt=["الحمد لله","استغفر الله","لا اله الا
                 color: Color(0xffB7935F),
                 child: Center(
                   child: Text(
-                    "30",
+   "$counter"
+                    ,
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w900,
@@ -59,12 +73,12 @@ List<String>txt=["الحمد لله","استغفر الله","لا اله الا
                 width: 1,
                 color:Colors.white
               )
-            ) 
+            )
 
           ),onPressed: (){
+sebhaLogic();
 
-
-          }, child: Text(txt[0],style: TextStyle(
+          }, child: Text(txt,style: TextStyle(
             fontSize: 25
           ),),)
         ],
@@ -72,16 +86,24 @@ List<String>txt=["الحمد لله","استغفر الله","لا اله الا
     );
 
     }
-    int Count=0;
-String increment(String txt){
-  for(int i=0;i<=33;i++){
-Count+=i;
-if(Count!=0){
-  return txt="ggg";
 
-}
+  void sebhaLogic() {
+    counter++;
+    angel++;
+    if (counter > 0 && counter < 33) {
+      txt = 'سبحان الله';
+    } else if (counter > 33 && counter < 66) {
+      txt = 'الحمدالله';
+    } else if (counter > 66 && counter < 99) {
+      txt = 'لا اله الا الله';
+    } else if (counter > 99 && counter <= 100) {
+      txt = 'الله اكبر';
+      oneHundred++;
+      counter = 0;
+
+    }
+    setState(() {
+
+    });
   }
-  return txt;
-}
-
 }
