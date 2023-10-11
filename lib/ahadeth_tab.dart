@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:islami/Hadeth_Details.dart';
 import 'package:islami/MyThemeData.dart';
 import 'package:islami/ahadeth_model.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class AhadethTap extends StatefulWidget {
   @override
   State<AhadethTap> createState() => _AhadethTapState();
@@ -14,10 +14,7 @@ class _AhadethTapState extends State<AhadethTap> {
 
   @override
   Widget build(BuildContext context) {
-   if(AllAhadeth.isEmpty)
-     LoadAhadeth();
-
-
+    if (AllAhadeth.isEmpty) LoadAhadeth();
 
     return Container(
       width: double.infinity,
@@ -31,15 +28,8 @@ class _AhadethTapState extends State<AhadethTap> {
             endIndent: 0,
             indent: 0,
           ),
-
-
-
-
-
-
-
           Text(
-            "Ahadeth",
+            AppLocalizations.of(context)!.ahadeth,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Divider(
@@ -49,17 +39,17 @@ class _AhadethTapState extends State<AhadethTap> {
             indent: 0,
           ),
           Expanded(
-            child: ListView.separated(separatorBuilder: (context, index) => Divider(
-              thickness: 5,
-              endIndent: 40,
-              indent: 40,
-            ),
+            child: ListView.separated(
+              separatorBuilder: (context, index) => Divider(
+                thickness: 5,
+                endIndent: 40,
+                indent: 40,
+              ),
               itemBuilder: (context, index) {
                 return InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, HadethDetails.routename,
-                          arguments:AllAhadeth[index]
-                      );
+                          arguments: AllAhadeth[index]);
                     },
                     child: Center(child: Text(AllAhadeth[index].Tittle)));
               },
@@ -71,9 +61,8 @@ class _AhadethTapState extends State<AhadethTap> {
     );
   }
 
-  void LoadAhadeth(){
+  void LoadAhadeth() {
     rootBundle.loadString("assets/files/ahadeth.txt").then((ahadeth) {
-
       List<String> AhadethList = ahadeth.split("#");
       for (int i = 0; i < AhadethList.length; i++) {
         String HadethOne = AhadethList[i];
@@ -85,10 +74,8 @@ class _AhadethTapState extends State<AhadethTap> {
         print(ahadethmodel.Tittle);
         print(i);
 
-       AllAhadeth.add(ahadethmodel);
-       setState(() {
-
-       });
+        AllAhadeth.add(ahadethmodel);
+        setState(() {});
       }
     }).catchError((e) {
       print(e.toString());
