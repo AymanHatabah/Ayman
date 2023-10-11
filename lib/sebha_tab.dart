@@ -18,9 +18,6 @@ class _SebhaTabState extends State<SebhaTab> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return Center(
       child: Column(
         children: [
@@ -48,44 +45,35 @@ class _SebhaTabState extends State<SebhaTab> {
                 width: 100,
                 color: Color(0xffB7935F),
                 child: Center(
-                  child: Text(
-   "$counter"
-                    ,
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w900,
-                      color: Color(0xff242424),
-                    )
-                  ),
-
-
+                  child: Text("$counter",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w900,
+                        color: Color(0xff242424),
+                      )),
                 ),
               )),
           SizedBox(
             height: 20,
           ),
-          ElevatedButton(style:ElevatedButton.styleFrom(
-            backgroundColor: MyThemeData.primarycolor,
-
-            shape:RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-              side: BorderSide(
-                width: 1,
-                color:Colors.white
-              )
-            )
-
-          ),onPressed: (){
-sebhaLogic();
-
-          }, child: Text(txt,style: TextStyle(
-            fontSize: 25
-          ),),)
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: MyThemeData.primarycolor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: BorderSide(width: 1, color: Colors.white))),
+            onPressed: () {
+              sebhaLogic();
+            },
+            child: Text(
+              txt,
+              style: TextStyle(fontSize: 25),
+            ),
+          )
         ],
       ),
     );
-
-    }
+  }
 
   void sebhaLogic() {
     counter++;
@@ -100,10 +88,7 @@ sebhaLogic();
       txt = 'الله اكبر';
       oneHundred++;
       counter = 0;
-
     }
-    setState(() {
-
-    });
+    setState(() {});
   }
 }
